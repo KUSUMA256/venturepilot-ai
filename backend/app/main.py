@@ -14,6 +14,7 @@ import os
 load_dotenv()
 
 API_KEY = os.getenv("GEMINI_API_KEY")
+print("API KEY LOADED:", API_KEY[:10] if API_KEY else "NO KEY")
 
 # -----------------------------------
 # GEMINI CONFIG
@@ -94,12 +95,15 @@ Keep answers short and professional.
 """
 
     try:
-
+        
         response = model.generate_content(
             prompt
         )
 
         ai_output = response.text
+        print("\n===== GEMINI RESPONSE =====\n")
+        print(ai_output)
+        print("\n==========================\n")
 
         return {
 
@@ -160,8 +164,6 @@ Keep answers short and professional.
             "vision":
             f"Become the leading AI platform for {data.idea}.",
 
-            "error":
-            str(e)
 
         }
 
